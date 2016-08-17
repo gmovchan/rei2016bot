@@ -108,6 +108,8 @@ function processMessage($message) {
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Nice to meet you'));
     } else if ($text === "/сходка") {
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Через полчаса на Красной'));
+    } else if ($text === "/отношения") {
+      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Я встречаюсь с @237825320 (Mmm)'));
     } else if (strpos($text, "/stop") === 0) {
       // stop now
     } else {

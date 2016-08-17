@@ -106,6 +106,8 @@ function processMessage($message) {
         'resize_keyboard' => true)));
     } else if ($text === "Hello" || $text === "Hi") {
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Nice to meet you'));
+    } else if ($text === "/сходка") {
+      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Через полчаса на Красной'));
     } else if (strpos($text, "/stop") === 0) {
       // stop now
     } else {

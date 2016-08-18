@@ -101,12 +101,12 @@ function processMessage($message) {
     $text = $message['text'];
     if (strpos($text, "/start") === 0) {
       apiRequestJson("sendMessage", array('chat_id' => $chat_id, "text" => 'Я завелась'));
-    } else if ($text === "/hi") {
+    } else if ($text, "/hi") === 0) {
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Привет, няша'));
-    } else if ($text === "/meeting") {
+    } else if (strpos($text, "/meeting") === 0) {
       require_once("congregation.php");
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => $congregationClock));
-    } else if ($text === "/relationship") {
+    } else if (strpos($text, "/relationship") === 0) {
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Я ламповая няша, ищу домоседа, который любит аниме и доту. Пишите в ЛС'));
     } else if (strpos($text, "/stop") === 0) {
       // stop now

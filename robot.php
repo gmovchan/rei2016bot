@@ -99,7 +99,7 @@ function processMessage($message) {
   if (isset($message['text'])) {
     // incoming text message
     $text = $message['text'];
-    if (strpos($text, "/start") === 0) {
+    if (strpos($text, "/старт") === 0) {
       apiRequestJson("sendMessage", array('chat_id' => $chat_id, "text" => 'Привет', 'reply_markup' => array(
         'keyboard' => array(array('Hello', 'Hi')),
         'one_time_keyboard' => true,
@@ -107,7 +107,9 @@ function processMessage($message) {
     } else if ($text === "Привет" || $text === "Хай") {
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Приятно с вами познакомиться'));
     } else if ($text === "/сходка") {
-      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Через полчаса на Красной'));
+      require_once("congregation.php");
+
+      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => $congregationClock));
     } else if ($text === "/отношения") {
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Я встречаюсь с @237825320 (Mmm)'));
     } else if (strpos($text, "/stop") === 0) {
@@ -119,7 +121,8 @@ function processMessage($message) {
     apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'I understand only text messages'));
   }
 }
-define('WEBHOOK_URL', 'https://stk-industry.ru/robot/robot.php');
+//надо добавить ссылку на бебхук, хз зачем
+define('WEBHOOK_URL', 'https://api.telegram.org/bot248879322:AAGlm0_-jcOVLxerv6A7x8GmG42Ooul8OBE/setWebhook?url=https://reitelegram.herokuapp.com/robot.php');
 if (php_sapi_name() == 'cli') {
   // if run from console, set or delete webhook
   apiRequest('setWebhook', array('url' => isset($argv[1]) && $argv[1] == 'delete' ? '' : WEBHOOK_URL));

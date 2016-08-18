@@ -103,7 +103,7 @@ function processMessage($message) {
       apiRequestJson("sendMessage", array('chat_id' => $chat_id, "text" => 'Я завелась'));
     } else if ($text === "/hi") {
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Привет, няша'));
-    } else if ($text === "/meetig") {
+    } else if ($text === "/meeting") {
       require_once("congregation.php");
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => $congregationClock));
     } else if ($text === "/relationship") {

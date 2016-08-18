@@ -28,7 +28,7 @@
   }
 
   $congregationClock = "Сходка в " . $weekday[$weekdayRand]  . " в " . $hourRand  .
-  ":" . $minutesRand . " на " . $area[$areaRand] . "!";
+  ":" . $minutesRand . " на " . $area[$areaRand] . "";
 /*
   $congregation = "Сходка через " . $time[$timeRand]["number"]  .
   " " . $time[$timeRand]["clock"] . " на " . $area[$areaRand] . "!";

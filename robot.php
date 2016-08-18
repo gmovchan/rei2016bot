@@ -100,25 +100,21 @@ function processMessage($message) {
     // incoming text message
     $text = $message['text'];
     if (strpos($text, "/start") === 0) {
-      apiRequestJson("sendMessage", array('chat_id' => $chat_id, "text" => 'Привет', 'reply_markup' => array(
-        'keyboard' => array(array('Привет')),
-        'one_time_keyboard' => true,
-        'resize_keyboard' => true)));
+      apiRequestJson("sendMessage", array('chat_id' => $chat_id, "text" => 'Привет, няша'));
     } else if ($text === "Привет") {
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Приятно с вами познакомиться'));
-    } else if ($text === "/сходка") {
+    } else if ($text === "/meetig") {
       require_once("congregation.php");
-
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => $congregationClock));
-    } else if ($text === "/отношения") {
-      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Я встречаюсь с @237825320 (Mmm)'));
+    } else if ($text === "/relationship") {
+      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Я ламповая няша, ищу домоседа, который любит аниме и доту. Пишите в ЛС'));
     } else if (strpos($text, "/stop") === 0) {
       // stop now
     } else {
       apiRequestWebhook("sendMessage", array('chat_id' => $chat_id, "reply_to_message_id" => $message_id, "text" => 'Круто'));
     }
   } else {
-    apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'I understand only text messages'));
+    apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Я не понимаю что происходит'));
   }
 }
 //надо добавить ссылку на бебхук, хз зачем

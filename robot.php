@@ -100,9 +100,9 @@ function processMessage($message) {
     // incoming text message
     $text = $message['text'];
     if (strpos($text, "/start") === 0) {
-      apiRequestJson("sendMessage", array('chat_id' => $chat_id, "text" => 'Привет, няша'));
-    } else if ($text === "Привет") {
-      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Приятно с вами познакомиться'));
+      apiRequestJson("sendMessage", array('chat_id' => $chat_id, "text" => 'Я завелась'));
+    } else if ($text === "/hi") {
+      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Привет, няша'));
     } else if ($text === "/meetig") {
       require_once("congregation.php");
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => $congregationClock));

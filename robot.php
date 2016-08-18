@@ -99,13 +99,8 @@ function processMessage($message) {
   if (isset($message['text'])) {
     // incoming text message
     $text = $message['text'];
-    if (strpos($text, "/старт") === 0) {
-      apiRequestJson("sendMessage", array('chat_id' => $chat_id, "text" => 'Привет'
-      /*, 'reply_markup' => array(
-        'keyboard' => array(array('Привет', "/отношения", "/сходка")),
-        'one_time_keyboard' => false,
-        'resize_keyboard' => false)*/
-      ));
+    if (strpos($text, "/start") === 0) {
+      apiRequestJson("sendMessage", array('chat_id' => $chat_id, "text" => 'Привет'));
     } else if ($text === "Привет") {
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Приятно с вами познакомиться'));
     } else if ($text === "/сходка") {

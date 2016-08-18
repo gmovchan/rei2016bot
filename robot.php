@@ -111,7 +111,7 @@ function processMessage($message) {
     } else if (strpos($text, "/stop") === 0) {
       // stop now
     } else {
-      apiRequestWebhook("sendMessage", array('chat_id' => $chat_id, "reply_to_message_id" => $message_id, "text" => 'Круто'));
+      apiRequestWebhook("sendMessage", array('chat_id' => $chat_id, "reply_to_message_id" => $message_id, "text" => 'Продолжай'));
     }
   } else {
     apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Я не понимаю что происходит'));

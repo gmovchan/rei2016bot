@@ -101,7 +101,7 @@ function processMessage($message) {
     $text = $message['text'];
     if (strpos($text, "/start") === 0) {
       apiRequestJson("sendMessage", array('chat_id' => $chat_id, "text" => 'Я завелась'));
-    } else if ($text, "/hi") === 0) {
+    } else if (strpos($text, "/hi") === 0) {
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Привет, няша'));
     } else if (strpos($text, "/meeting") === 0) {
       require_once("congregation.php");

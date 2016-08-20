@@ -110,6 +110,8 @@ function processMessage($message) {
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Я ламповая няша, ищу домоседа, который любит аниме и доту. Пишите в ЛС'));
     } else if (strpos($text, "/stop") === 0) {
       // stop now
+    } else if (strpos($text, "/help") === 0) {
+      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Правила конфы, нарушение которых карается баном:\r\n1. Постинг детской порнографии\r\n2. Вайп'));
     } else {
       apiRequestWebhook("sendMessage", array('chat_id' => $chat_id, "reply_to_message_id" => $message_id, "text" => 'Продолжай'));
     }

@@ -111,7 +111,7 @@ function processMessage($message) {
     } else if (strpos($text, "/stop") === 0) {
       // stop now
     } else if (strpos($text, "/help") === 0) {
-      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Правила конфы, нарушение которых карается баном:\r\n1. Постинг детской порнографии\r\n2. Вайп'));
+      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Правила конфы, нарушение которых карается баном:<br>. Постинг детской порнографии<br>. Вайп'));
     } else {
       apiRequestWebhook("sendMessage", array('chat_id' => $chat_id, "reply_to_message_id" => $message_id, "text" => 'Продолжай'));
     }

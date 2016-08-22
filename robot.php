@@ -2,7 +2,7 @@
 define('BOT_TOKEN', '248879322:AAGlm0_-jcOVLxerv6A7x8GmG42Ooul8OBE');
 define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
 
-function sendPhoto($chat_id) {
+function sendPhoto($chat_id, $img) {
 /*
   $bot_url    = "https://api.telegram.org/bot248879322:AAGlm0_-jcOVLxerv6A7x8GmG42Ooul8OBE/";
 //  $url        = $bot_url . "sendPhoto?chat_id=" . $chat_id ;
@@ -23,10 +23,24 @@ function sendPhoto($chat_id) {
   return exec_curl_request($handle);
 */
 
+switch ($img) {
+  case 'bird':
+    $img = "/app/img/1.jpg";
+    break;
+
+  case 'test':
+    $img = "/app/img/pregnancy.jpg";
+    break;
+
+  default:
+
+    break;
+}
+
 $url = API_URL.'sendPhoto?chat_id='.$chat_id;
 
 $post_fields = array('chat_id'   => $chat_id,
-    'photo'     => new CURLFile(realpath("/app/img/1.jpg"))
+    'photo'     => new CURLFile(realpath($img))
 );
 
 $handle = curl_init();
@@ -172,8 +186,10 @@ function processMessage($message) {
     } else if (strpos($text, "/help") === 0) {
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => "Правила конфы, нарушение которых карается изгнанием: \n 1. Постинг детской порнографии \n 2. Вайп"));
     } else if (strpos($text, "/bird") === 0) {
-      sendPhoto($chat_id);
-    }else {
+      sendPhoto($chat_id, "bird");
+    } else if (strpos($text, "/test") === 0) {
+      sendPhoto($chat_id, "test");
+    } else {
       apiRequestWebhook("sendMessage", array('chat_id' => $chat_id, "reply_to_message_id" => $message_id, "text" => 'Продолжай'));
     }
   } else {

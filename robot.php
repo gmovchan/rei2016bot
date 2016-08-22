@@ -3,6 +3,7 @@ define('BOT_TOKEN', '248879322:AAGlm0_-jcOVLxerv6A7x8GmG42Ooul8OBE');
 define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
 
 function sendPhoto($chat_id) {
+  /*
   $bot_url    = "https://api.telegram.org/bot248879322:AAGlm0_-jcOVLxerv6A7x8GmG42Ooul8OBE/";
   $url        = $bot_url . "sendPhoto?chat_id=" . $chat_id ;
 
@@ -18,6 +19,13 @@ function sendPhoto($chat_id) {
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
   curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
   $output = curl_exec($ch);
+  */
+  $url = API_URL.'sendMessage?sendMessage?chat_id=@' . $chat_id . '&text=тест.';
+  $handle = curl_init($url);
+  curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 5);
+  curl_setopt($handle, CURLOPT_TIMEOUT, 60);
+  curl_exec($handle);
 }
 
 function apiRequestWebhook($method, $parameters) {

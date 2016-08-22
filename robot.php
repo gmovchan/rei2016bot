@@ -113,7 +113,7 @@ function processMessage($message) {
     } else if (strpos($text, "/help") === 0) {
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => "Правила конфы, нарушение которых карается изгнанием: \n 1. Постинг детской порнографии \n 2. Вайп"));
     } else if (strpos($text, "/test") === 0) {
-      apiRequest("sendPhoto", array('chat_id' => $chat_id, 'photo' => new CURLFile(realpath('/img/1.jpg'))));
+      apiRequest("sendPhoto", array('chat_id' => $chat_id, 'photo' => new CURLFile(realpath("/img/1.jpg"))));
     }else {
       apiRequestWebhook("sendMessage", array('chat_id' => $chat_id, "reply_to_message_id" => $message_id, "text" => 'Продолжай'));
     }
@@ -121,15 +121,6 @@ function processMessage($message) {
     apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Я не понимаю что происходит'));
   }
 }
-
-$ch = curl_init();
-  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        "Content-Type:multipart/form-data"
-  ));
-  curl_setopt($ch, CURLOPT_URL, $url);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
-  $output = curl_exec($ch);
 
 //надо добавить ссылку на бебхук, хз зачем
 define('WEBHOOK_URL', 'https://api.telegram.org/bot248879322:AAGlm0_-jcOVLxerv6A7x8GmG42Ooul8OBE/setWebhook?url=https://reitelegram.herokuapp.com/robot.php');

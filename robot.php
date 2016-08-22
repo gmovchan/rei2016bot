@@ -25,8 +25,7 @@ function sendPhoto($chat_id) {
 
 $url = API_URL.'sendPhoto?chat_id='.$chat_id;
 
-$post_fields = array('chat_id'   => $chat_id,
-    'photo'     => new CURLFile(realpath("/img/1.jpg"))
+$post_fields = array('photo'     => new CURLFile(realpath("/img/1.jpg"))
 );
 
 $handle = curl_init();

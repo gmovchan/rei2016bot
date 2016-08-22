@@ -22,7 +22,7 @@ function sendPhoto($chat_id) {
 //  $output = curl_exec($ch);
   return exec_curl_request($handle);
 */
-
+/*
 $url = API_URL.'sendPhoto?chat_id='.$chat_id;
 
 $post_fields = array('photo'     => new CURLFile(realpath("/img/1.jpg"))
@@ -37,10 +37,11 @@ curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($handle, CURLOPT_POSTFIELDS, $post_fields);
 
 $response = curl_exec($handle);
-
+*/
 //  $parameters = array('chat_id' => $chat_id, "text" => 'Птичка');
 //  $url = API_URL.'sendMessage?'.http_build_query($parameters);
-  $url = API_URL.'sendMessage?chat_id='.$chat_id.'&text=текст';
+  $randomArr = $arrayName = array('a' => '1', 'b' => '2');
+  $url = API_URL.'sendMessage?chat_id='.$chat_id.'&text='.$randomArr;
   $handle = curl_init($url);
   curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 5);

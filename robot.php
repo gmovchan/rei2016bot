@@ -45,7 +45,7 @@ $response = curl_exec($handle);
   $files1 = implode($files1);
   $randomArr = $arrayName = array('a' => '1', 'b' => '2');
   $randomArr = implode($randomArr);
-  $url = API_URL.'sendMessage?chat_id='.$chat_id.'&text='.$files1;
+  $url = API_URL.'sendMessage?chat_id='.$chat_id.'&text='.$randomArr;
   $handle = curl_init($url);
   curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 5);

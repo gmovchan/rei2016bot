@@ -113,7 +113,7 @@ function processMessage($message) {
     } else if (strpos($text, "/help") === 0) {
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => "Правила конфы, нарушение которых карается изгнанием: \n 1. Постинг детской порнографии \n 2. Вайп"));
     } else if (strpos($text, "/test") === 0) {
-      apiRequest("sendPhoto", array('chat_id' => $chat_id, "photo" => new CURLFile(realpath('/img/1.png'))));
+      apiRequest("sendPhoto", array('chat_id' => $chat_id, 'photo' => new CURLFile(realpath('/img/1.jpg'))));
     }else {
       apiRequestWebhook("sendMessage", array('chat_id' => $chat_id, "reply_to_message_id" => $message_id, "text" => 'Продолжай'));
     }

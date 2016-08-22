@@ -24,7 +24,7 @@ function sendPhoto($chat_id) {
 */
 
 
-/*
+
 //  $parameters = array('chat_id' => $chat_id, "text" => 'Птичка');
 //  $url = API_URL.'sendMessage?'.http_build_query($parameters);
   $url = API_URL.'sendMessage?chat_id='.$chat_id.'&text=текст';
@@ -34,7 +34,7 @@ function sendPhoto($chat_id) {
   curl_setopt($handle, CURLOPT_TIMEOUT, 60);
 //  return exec_curl_request($handle);
   $response = curl_exec($handle);
-*/
+
   $url = API_URL.'sendPhoto?chat_id='.$chat_id;
 
   $post_fields = array('chat_id'   => $chat_id,

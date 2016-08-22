@@ -28,7 +28,7 @@ function sendPhoto($chat_id) {
   curl_setopt($handle, CURLOPT_TIMEOUT, 60);
   curl_exec($handle);
   */
-  $url = API_URL.'sendMessage?chat_id=@' . $chat_id . '&text=тест.';
+  $url = API_URL.'sendMessage?chat_id=' . $chat_id . '&text=тест.';
   $handle = curl_init($url);
   curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 5);

@@ -20,12 +20,20 @@ function sendPhoto($chat_id) {
   curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
   $output = curl_exec($ch);
   */
+  /*
   $url = API_URL.'sendMessage?sendMessage?chat_id=@' . $chat_id . '&text=тест.';
   $handle = curl_init($url);
   curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 5);
   curl_setopt($handle, CURLOPT_TIMEOUT, 60);
   curl_exec($handle);
+  */
+  $url = API_URL.'sendMessage?chat_id=@' . $chat_id . '&text=тест.';
+  $handle = curl_init($url);
+  curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 5);
+  curl_setopt($handle, CURLOPT_TIMEOUT, 60);
+  return exec_curl_request($handle);
 }
 
 function apiRequestWebhook($method, $parameters) {

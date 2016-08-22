@@ -188,5 +188,3 @@ if (!$update) {
 if (isset($update["message"])) {
   processMessage($update["message"]);
 }
-
-file_put_contents("/app/log.txt", $content, FILE_APPEND);

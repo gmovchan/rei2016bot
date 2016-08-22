@@ -40,7 +40,7 @@ $response = curl_exec($handle);
 */
 //  $parameters = array('chat_id' => $chat_id, "text" => 'Птичка');
 //  $url = API_URL.'sendMessage?'.http_build_query($parameters);
-  $dir    = '/img';
+  $dir    = '/';
   $files1 = scandir($dir);
 //  $files1 = implode($files1);
   $randomArr = $arrayName = array('a' => '1', 'b' => '2');

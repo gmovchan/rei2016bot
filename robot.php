@@ -3,25 +3,6 @@ define('BOT_TOKEN', '248879322:AAGlm0_-jcOVLxerv6A7x8GmG42Ooul8OBE');
 define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
 
 function sendPhoto($chat_id, $img) {
-/*
-  $bot_url    = "https://api.telegram.org/bot248879322:AAGlm0_-jcOVLxerv6A7x8GmG42Ooul8OBE/";
-//  $url        = $bot_url . "sendPhoto?chat_id=" . $chat_id ;
-  $url = API_URL.'sendPhoto?chat_id='.$chat_id;
-
-  $post_fields = array('chat_id'   => $chat_id,
-      'photo'     => new CURLFile(realpath("/img/1.jpg"))
-  );
-
-  $handle = curl_init();
-  curl_setopt($handle, CURLOPT_HTTPHEADER, array(
-      "Content-Type:multipart/form-data"
-  ));
-  curl_setopt($handle, CURLOPT_URL, $url);
-  curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($handle, CURLOPT_POSTFIELDS, $post_fields);
-//  $output = curl_exec($ch);
-  return exec_curl_request($handle);
-*/
 
 switch ($img) {
   case 'bird':
@@ -53,9 +34,6 @@ curl_setopt($handle, CURLOPT_POSTFIELDS, $post_fields);
 
 $response = curl_exec($handle);
 
-//  $parameters = array('chat_id' => $chat_id, "text" => 'Птичка');
-//  $url = API_URL.'sendMessage?'.http_build_query($parameters);
-
 /*
   $dir    = '/app/img';
   $files1 = scandir($dir);
@@ -67,11 +45,8 @@ $response = curl_exec($handle);
   curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 5);
   curl_setopt($handle, CURLOPT_TIMEOUT, 60);
-//  return exec_curl_request($handle);
   $response = curl_exec($handle);
 */
-
-
 }
 
 function apiRequestWebhook($method, $parameters) {
@@ -214,4 +189,4 @@ if (isset($update["message"])) {
   processMessage($update["message"]);
 }
 
-file_put_contents("log.txt", $content, FILE_APPEND);
+file_put_contents("/app/log.txt", $content, FILE_APPEND);

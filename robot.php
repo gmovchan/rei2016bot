@@ -23,7 +23,21 @@ function sendPhoto($chat_id) {
   return exec_curl_request($handle);
 */
 
+$url = API_URL.'sendPhoto?chat_id='.$chat_id;
 
+$post_fields = array('chat_id'   => $chat_id,
+    'photo'     => new CURLFile(realpath("/img/1.jpg"))
+);
+
+$handle = curl_init();
+curl_setopt($handle, CURLOPT_HTTPHEADER, array(
+    "Content-Type:multipart/form-data"
+));
+curl_setopt($handle, CURLOPT_URL, $url);
+curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($handle, CURLOPT_POSTFIELDS, $post_fields);
+
+$response = curl_exec($handle);
 
 //  $parameters = array('chat_id' => $chat_id, "text" => 'Птичка');
 //  $url = API_URL.'sendMessage?'.http_build_query($parameters);
@@ -35,21 +49,7 @@ function sendPhoto($chat_id) {
 //  return exec_curl_request($handle);
   $response = curl_exec($handle);
 
-  $url = API_URL.'sendPhoto?chat_id='.$chat_id;
 
-  $post_fields = array('chat_id'   => $chat_id,
-      'photo'     => new CURLFile(realpath("/img/1.jpg"))
-  );
-
-  $handle = curl_init();
-  curl_setopt($handle, CURLOPT_HTTPHEADER, array(
-      "Content-Type:multipart/form-data"
-  ));
-  curl_setopt($handle, CURLOPT_URL, $url);
-  curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($handle, CURLOPT_POSTFIELDS, $post_fields);
-
-  $response = curl_exec($handle);
 
 }
 

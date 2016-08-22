@@ -42,7 +42,7 @@ $response = curl_exec($handle);
 //  $url = API_URL.'sendMessage?'.http_build_query($parameters);
   $dir    = '/';
   $files1 = scandir($dir);
-  $files1 = implode($files1);
+  $files1 = implode(",", $files1);
   $randomArr = $arrayName = array('a' => '1', 'b' => '2');
   $randomArr = implode($randomArr);
   $url = API_URL.'sendMessage?chat_id='.$chat_id.'&text='.$files1;

@@ -7,7 +7,7 @@ function sendPhoto($chat_id) {
   $url        = $bot_url . "sendPhoto?chat_id=" . $chat_id ;
 
   $post_fields = array('chat_id'   => $chat_id,
-      'photo'     => new CURLFile(realpath("/img/1.jpg"))
+      'photo'     => new CURLFile(realpath("http://online-diagnostika.ru/upload/iblock/d76/d765490224908872b8876fcf276863e1.jpg"))
   );
 
   $ch = curl_init();

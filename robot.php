@@ -1,6 +1,25 @@
 <?php
 define('BOT_TOKEN', '248879322:AAGlm0_-jcOVLxerv6A7x8GmG42Ooul8OBE');
 define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
+
+function sendPhoto() {
+//  $bot_url    = "https://api.telegram.org/bot<bot_id>/";
+  $url        = API_URL . "sendPhoto?chat_id=" . $chat_id ;
+
+  $post_fields = array('chat_id'   => $chat_id,
+      'photo'     => new CURLFile(realpath("/img/1.jpg"))
+  );
+
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      "Content-Type:multipart/form-data"
+  ));
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
+  $output = curl_exec($ch);
+}
+
 function apiRequestWebhook($method, $parameters) {
   if (!is_string($method)) {
     error_log("Method name must be a string\n");
@@ -112,8 +131,8 @@ function processMessage($message) {
       // stop now
     } else if (strpos($text, "/help") === 0) {
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => "Правила конфы, нарушение которых карается изгнанием: \n 1. Постинг детской порнографии \n 2. Вайп"));
-    } else if (strpos($text, "/test") === 0) {
-      apiRequest("sendPhoto", array('chat_id' => $chat_id, 'photo' => new CURLFile(realpath("/img/1.jpg"))));
+    } else if (strpos($text, "/bird") === 0) {
+      sendPhoto();
     }else {
       apiRequestWebhook("sendMessage", array('chat_id' => $chat_id, "reply_to_message_id" => $message_id, "text" => 'Продолжай'));
     }

@@ -3,32 +3,26 @@ define('BOT_TOKEN', '248879322:AAGlm0_-jcOVLxerv6A7x8GmG42Ooul8OBE');
 define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
 
 function sendPhoto($chat_id) {
-  /*
+  
   $bot_url    = "https://api.telegram.org/bot248879322:AAGlm0_-jcOVLxerv6A7x8GmG42Ooul8OBE/";
-  $url        = $bot_url . "sendPhoto?chat_id=" . $chat_id ;
+//  $url        = $bot_url . "sendPhoto?chat_id=" . $chat_id ;
+  $url = API_URL.'sendPhoto?chat_id='.$chat_id;
 
   $post_fields = array('chat_id'   => $chat_id,
-      'photo'     => new CURLFile(realpath("http://online-diagnostika.ru/upload/iblock/d76/d765490224908872b8876fcf276863e1.jpg"))
+      'photo'     => new CURLFile(realpath("/img/1.jpg"))
   );
 
-  $ch = curl_init();
-  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+  $handle = curl_init();
+  curl_setopt($handle, CURLOPT_HTTPHEADER, array(
       "Content-Type:multipart/form-data"
   ));
-  curl_setopt($ch, CURLOPT_URL, $url);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
-  $output = curl_exec($ch);
-  */
-  /*
-  $url = API_URL.'sendMessage?sendMessage?chat_id=@' . $chat_id . '&text=тест.';
-  $handle = curl_init($url);
-  curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 5);
-  curl_setopt($handle, CURLOPT_TIMEOUT, 60);
-  curl_exec($handle);
-  */
+  curl_setopt($handle, CURLOPT_URL, $url);
+  curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($handle, CURLOPT_POSTFIELDS, $post_fields);
+//  $output = curl_exec($ch);
+  return exec_curl_request($handle);
 
+/*
   $parameters = array('chat_id' => $chat_id, "text" => 'Птичка');
 //  $url = API_URL.'sendMessage?'.http_build_query($parameters);
   $url = API_URL.'sendMessage?chat_id='.$chat_id.'&text=текст';
@@ -37,6 +31,7 @@ function sendPhoto($chat_id) {
   curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 5);
   curl_setopt($handle, CURLOPT_TIMEOUT, 60);
   return exec_curl_request($handle);
+*/
 }
 
 function apiRequestWebhook($method, $parameters) {

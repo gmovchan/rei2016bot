@@ -6,7 +6,10 @@ function sendPhoto($chat_id, $img) {
 
 switch ($img) {
   case 'bird':
-    $img = "/app/img/1.jpg";
+    $dir    = '/app/img/birds';
+    $files = scandir($dir);
+    $birdRand = mt_rand( 0, count($files) - 1);
+    $img = "/app/img/birds/".$files[$birdRand];
     break;
 
   case 'test':

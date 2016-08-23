@@ -158,11 +158,13 @@ function processMessage($message) {
       require_once("congregation.php");
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => $congregationClock));
     } else if (strpos($text, "/relationship") === 0) {
-      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Я ламповая няша, ищу домоседа, который любит аниме и доту. Пишите в ЛС'));
+      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" =>
+      "Я ламповая няша, ищу домоседа, который любит аниме и играет доту. Может это ты моя вторая половинка?"));
     } else if (strpos($text, "/stop") === 0) {
       // stop now
     } else if (strpos($text, "/help") === 0) {
-      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => "Правила конфы, нарушение которых карается изгнанием: \n 1. Постинг детской порнографии \n 2. Вайп"));
+      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" =>
+      "Правила конфы, нарушение которых карается изгнанием: \n 1. Постинг детской порнографии \n 2. Вайп"));
     } else if (strpos($text, "/bird") === 0) {
       sendPhoto($chat_id, "bird");
     } else if (strpos($text, "/test") === 0) {
@@ -175,7 +177,6 @@ function processMessage($message) {
   }
 }
 
-//надо добавить ссылку на бебхук, хз зачем
 define('WEBHOOK_URL', 'https://api.telegram.org/bot248879322:AAGlm0_-jcOVLxerv6A7x8GmG42Ooul8OBE/setWebhook?url=https://reitelegram.herokuapp.com/robot.php');
 if (php_sapi_name() == 'cli') {
   // if run from console, set or delete webhook

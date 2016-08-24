@@ -1,6 +1,57 @@
 <?php
 define('BOT_TOKEN', '248879322:AAGlm0_-jcOVLxerv6A7x8GmG42Ooul8OBE');
 define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
+
+function sendPhoto($chat_id, $img) {
+
+switch ($img) {
+  case 'bird':
+    $dir    = '/app/img/birds';
+    $files = scandir($dir);
+    $birdRand = mt_rand( 0, count($files) - 1);
+    $img = "/app/img/birds/".$files[$birdRand];
+    break;
+
+  case 'test':
+    $img = "/app/img/pregnancy.jpg";
+    break;
+
+  default:
+
+    break;
+}
+
+$url = API_URL.'sendPhoto?chat_id='.$chat_id;
+
+$post_fields = array('chat_id'   => $chat_id,
+    'photo'     => new CURLFile(realpath($img))
+);
+
+$handle = curl_init();
+curl_setopt($handle, CURLOPT_HTTPHEADER, array(
+    "Content-Type:multipart/form-data"
+));
+curl_setopt($handle, CURLOPT_URL, $url);
+curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($handle, CURLOPT_POSTFIELDS, $post_fields);
+
+$response = curl_exec($handle);
+
+/*
+  $dir    = '/app/img';
+  $files1 = scandir($dir);
+  $files1 = implode(",", $files1);
+  $randomArr = $arrayName = array('a' => '1', 'b' => '2');
+  $randomArr = implode($randomArr);
+  $url = API_URL.'sendMessage?chat_id='.$chat_id.'&text='.$files1;
+  $handle = curl_init($url);
+  curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 5);
+  curl_setopt($handle, CURLOPT_TIMEOUT, 60);
+  $response = curl_exec($handle);
+*/
+}
+
 function apiRequestWebhook($method, $parameters) {
   if (!is_string($method)) {
     error_log("Method name must be a string\n");
@@ -99,29 +150,33 @@ function processMessage($message) {
   if (isset($message['text'])) {
     // incoming text message
     $text = $message['text'];
-    if (strpos($text, "/старт") === 0) {
-      apiRequestJson("sendMessage", array('chat_id' => $chat_id, "text" => 'Привет', 'reply_markup' => array(
-        'keyboard' => array(array('Привет', "/отношения", "/сходка")),
-        'one_time_keyboard' => false,
-        'resize_keyboard' => false)));
-    } else if ($text === "Привет") {
-      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Приятно с вами познакомиться'));
-    } else if ($text === "/сходка") {
+    if (strpos($text, "/start") === 0) {
+      apiRequestJson("sendMessage", array('chat_id' => $chat_id, "text" => 'Я завелась'));
+    } else if (strpos($text, "/hi") === 0) {
+      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Привет, няша'));
+    } else if (strpos($text, "/meeting") === 0) {
       require_once("congregation.php");
-
       apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => $congregationClock));
-    } else if ($text === "/отношения") {
-      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Я встречаюсь с @237825320 (Mmm)'));
+    } else if (strpos($text, "/relationship") === 0) {
+      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" =>
+      "Я ламповая няша, ищу домоседа, который любит аниме и играет доту. Может это ты моя вторая половинка?"));
     } else if (strpos($text, "/stop") === 0) {
       // stop now
+    } else if (strpos($text, "/help") === 0) {
+      apiRequest("sendMessage", array('chat_id' => $chat_id, "text" =>
+      "Правила конфы, нарушение которых карается изгнанием: \n 1. Постинг детской порнографии \n 2. Вайп"));
+    } else if (strpos($text, "/bird") === 0) {
+      sendPhoto($chat_id, "bird");
+    } else if (strpos($text, "/test") === 0) {
+      sendPhoto($chat_id, "test");
     } else {
-      apiRequestWebhook("sendMessage", array('chat_id' => $chat_id, "reply_to_message_id" => $message_id, "text" => 'Круто'));
+      apiRequestWebhook("sendMessage", array('chat_id' => $chat_id, "reply_to_message_id" => $message_id, "text" => 'Продолжай'));
     }
   } else {
-    apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'I understand only text messages'));
+    apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => 'Я не понимаю что происходит'));
   }
 }
-//надо добавить ссылку на бебхук, хз зачем
+
 define('WEBHOOK_URL', 'https://api.telegram.org/bot248879322:AAGlm0_-jcOVLxerv6A7x8GmG42Ooul8OBE/setWebhook?url=https://reitelegram.herokuapp.com/robot.php');
 if (php_sapi_name() == 'cli') {
   // if run from console, set or delete webhook

@@ -1,6 +1,5 @@
 <?php
-define('BOT_TOKEN', '248879322:AAGlm0_-jcOVLxerv6A7x8GmG42Ooul8OBE');
-define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
+require_once("config.php");
 
 function sendPhoto($chat_id, $img) {
 
@@ -177,7 +176,7 @@ function processMessage($message) {
   }
 }
 
-define('WEBHOOK_URL', 'https://api.telegram.org/bot248879322:AAGlm0_-jcOVLxerv6A7x8GmG42Ooul8OBE/setWebhook?url=https://reitelegram.herokuapp.com/robot.php');
+
 if (php_sapi_name() == 'cli') {
   // if run from console, set or delete webhook
   apiRequest('setWebhook', array('url' => isset($argv[1]) && $argv[1] == 'delete' ? '' : WEBHOOK_URL));
